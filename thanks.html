@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="navbar">
+            <h1>Jason Williams</h1>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Thank You Section -->
+    <div class="container">
+        <div class="section" style="text-align:center;">
+            <h2>Thank You!</h2>
+            <p>Your message has been sent successfully. I will get back to you as soon as possible.</p>
+            <a href="{{ url_for('about') }}" class="btn btn-github">Return Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

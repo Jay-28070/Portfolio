@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <title>Portfolio</title>
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav>
+        <div class="navbar">
+            <h1>Jason Williams</h1>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="index.html">About</a></li>
+                    <li><a class="active-page" href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Projects-->
+    <!-- AI Projects Subheading -->
+    <h3 class="subheading">--- AI Projects ---</h3>
+
+    <div class="projects-grid">
+
+        <!-- Custom Content generator -->
+        <div class="project-card">
+            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/loveable1.png') }}">
+                <source src="loveable1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>Custom Content Generator</h3>
+            <p>AI-powered custom content generator website built using Loveable. Focus on prompt engineering and
+                AI-driven design.</p>
+            <a href="https://vision-code-text.lovable.app" class="btn btn-github" target="_blank">View Project</a>
+        </div>
+
+        <!-- Resume wizard-->
+        <div class="project-card">
+            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/loveable2.png') }}">
+                <source src="loveable2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>Resume Generator</h3>
+            <p>Another AI-powered website from Loveable that can create or enhance CV's. Highlighting prompt engineering
+                skills.</p>
+            <a href="https://resume-wizard-ai-76.lovable.app/" class="btn btn-github" disabled>View Project</a>
+        </div>
+
+        <!-- Chatbot -->
+        <div class="project-card">
+            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/chatbot.png') }}">
+                <source src="chatbot.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3>Zapier Chatbot</h3>
+            <p>An AI chatbot built using Zapier, showcasing workflow automation and prompt engineering skills.</p>
+            <a href="https://ai-concept-bot.zapier.app/" class="btn btn-github" disabled>View Project</a>
+        </div>
+    </div>
+
+
+    </div>
+
+</body>
+
+</html>
