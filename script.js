@@ -66,4 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Oops! Something went wrong.');
             });
     });
+
+    // ----------------------------
+    // Force download CV
+    // ----------------------------
+    document.getElementById('download-cv').addEventListener('click', function (e){
+        e.preventDefault();
+        fetch('cv.pdf')
+        .then(resp => resp.blop())
+        .then(blob => {
+            const url = window.url.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'JasonWilliamsCV.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            
+        })
+    })
 });
