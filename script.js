@@ -47,23 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------
     const form = document.getElementById('contact-form');
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // prevent default submission
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // prevent default submission
 
-    fetch('https://formspree.io/f/YOUR_FORM_ID', { // replace with your endpoint
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href = "thankyou.html"; // redirect to your page
-        } else {
-            alert('Oops! Something went wrong.');
-        }
-    })
-    .catch(() => {
-        alert('Oops! Something went wrong.');
+        fetch('https://formspree.io/f/YOUR_FORM_ID', { // replace with your endpoint
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "thankyou.html"; // redirect to your page
+                } else {
+                    alert('Oops! Something went wrong.');
+                }
+            })
+            .catch(() => {
+                alert('Oops! Something went wrong.');
+            });
     });
-});
 });

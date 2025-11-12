@@ -16,10 +16,17 @@ body {
     margin: 0;
 }
 
+/* Prevent accidental horizontal scrolling on small devices caused by large fixed widths/paddings */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* Navbar */
 nav {
     background-color: #1a1a1a;
-    padding: 15px 50px;
+    /* use relative spacing so it adapts on narrow viewports */
+    padding: 15px 2rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -35,10 +42,17 @@ nav {
     letter-spacing: 1px;
 }
 
+/* make the main title responsive so it doesn't wrap awkwardly on small screens */
+.navbar h1 {
+    font-size: clamp(18px, 4vw, 24px);
+}
+
 .navbar-links ul {
     list-style: none;
     display: flex;
     gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-links a {
@@ -62,7 +76,8 @@ nav {
 
 /* Container for introduction*/
 .container {
-    padding: 50px;
+    /* reduce horizontal padding so content doesn't force horizontal scroll on phones */
+    padding: 50px 20px;
     max-width: 1200px;
     margin: auto;
 
@@ -139,8 +154,10 @@ hr {
 }
 
 .profile-image {
-    width: 370px;
-    height: 380px;
+    /* make image responsive - don't force a fixed width that breaks small screens */
+    width: 100%;
+    max-width: 370px;
+    height: auto;
     object-fit: cover;
     border-radius: 15px;
     border: 4px solid #5192e6;
@@ -253,6 +270,38 @@ hr {
 
     .buttons {
         justify-content: center;
+    }
+}
+
+/* Mobile navbar adjustments */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    /* center the nav links and make them touch-friendly */
+    .navbar-links ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .navbar-links ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-links a {
+        display: inline-block;
+        padding: 8px 12px;
+    }
+
+    /* prevent the nav from pushing off-screen by reducing horizontal padding */
+    nav {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
