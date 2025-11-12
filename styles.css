@@ -156,12 +156,19 @@ hr {
 .profile-image {
     /* make image responsive - don't force a fixed width that breaks small screens */
     width: 100%;
-    max-width: 370px;
+    max-width: 260px;
     height: auto;
     object-fit: cover;
     border-radius: 15px;
     border: 4px solid #5192e6;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Make the profile image a bit smaller on narrow phones */
+@media (max-width: 600px) {
+    .profile-image {
+        max-width: 200px;
+    }
 }
 
 /* Buttons */
