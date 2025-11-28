@@ -7,7 +7,8 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background-color: #111;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    background-attachment: fixed;
     color: white;
 
     display: flex;
@@ -24,10 +25,15 @@ html, body {
 
 /* Navbar */
 nav {
-    background-color: #1a1a1a;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(81, 146, 230, 0.2);
     /* use relative spacing so it adapts on narrow viewports */
     padding: 15px 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar {
@@ -37,9 +43,13 @@ nav {
 }
 
 .navbar h1 {
-    color: #5192e6;
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 24px;
     letter-spacing: 1px;
+    font-weight: 700;
 }
 
 /* make the main title responsive so it doesn't wrap awkwardly on small screens */
@@ -59,19 +69,35 @@ nav {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #5192e6, #7dd3fc);
+    transition: width 0.3s ease;
 }
 
 .navbar-links a:hover {
-    color: #5192e6;
-    border-bottom: 2px solid #5192e6;
-    padding-bottom: 3px;
+    color: #7dd3fc;
+}
+
+.navbar-links a:hover::after {
+    width: 100%;
 }
 
 .active-page {
     color: #5192e6;
-    border-bottom: 2px solid #5192e6;
-    padding-bottom: 3px;
+}
+
+.active-page::after {
+    width: 100% !important;
 }
 
 /* Container for introduction*/
@@ -106,18 +132,22 @@ hr {
 }
 
 .greeting-h1 {
-    font-size: 32px;
-    border-bottom: 2px solid #5192e6;
-    /* underline color */
+    font-size: 36px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, #5192e6, #7dd3fc, #a78bfa) 1;
     display: inline-block;
     padding-bottom: 10px;
-    color: #5192e6;
-    /* text color */
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
 
     /* animation defaults */
     opacity: 0;
     transform: translateY(-20px);
-    transition: all 0.7s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
 }
 
 .greeting-h1.show {
@@ -138,8 +168,10 @@ hr {
 
 .intro-text p {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.8;
     margin: 20px 0;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .intro-image {
@@ -160,8 +192,25 @@ hr {
     height: auto;
     object-fit: cover;
     border-radius: 15px;
-    border: 4px solid #5192e6;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 4px solid transparent;
+    background: linear-gradient(#1a1a2e, #1a1a2e) padding-box,
+                linear-gradient(135deg, #5192e6, #7dd3fc, #a78bfa) border-box;
+    box-shadow: 0 10px 40px rgba(81, 146, 230, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image {
+    cursor: pointer;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(81, 146, 230, 0.5);
+}
+
+.intro-image a {
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* Make the profile image a bit smaller on narrow phones */
@@ -182,26 +231,54 @@ hr {
 .btn {
     padding: 12px 25px;
     font-size: 16px;
-    font-weight: 500;
-    border-radius: 5px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-github {
+    background: linear-gradient(135deg, #5192e6 0%, #4169e1 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(81, 146, 230, 0.4);
 }
 
 .btn-github:hover {
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(81, 146, 230, 0.6);
 }
 
 .btn-cv {
     background-color: transparent;
     color: #5192e6;
     border: 2px solid #5192e6;
+    box-shadow: 0 4px 15px rgba(81, 146, 230, 0.2);
 }
 
 .btn-cv:hover {
-    background-color: #5192e6;
+    background: linear-gradient(135deg, #5192e6 0%, #4169e1 100%);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(81, 146, 230, 0.6);
 }
 
 /* Section Styling for horizontal cards*/
@@ -209,17 +286,30 @@ hr {
     margin: 30px auto;
     max-width: 1000px;
     width: 90%;
-    background-color: #1a1a1a;
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(10px);
     padding: 30px 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    border: 1px solid rgba(81, 146, 230, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(81, 146, 230, 0.3);
+    border-color: rgba(81, 146, 230, 0.4);
 }
 
 .section h2 {
     font-size: 28px;
-    color: #5192e6;
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 20px;
-    border-bottom: 2px solid #5192e6;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, #5192e6, #7dd3fc) 1;
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -239,8 +329,11 @@ hr {
 }
 
 .section ul li span {
-    font-weight: 500;
-    color: #5192e6;
+    font-weight: 600;
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .section .btn {
@@ -251,12 +344,14 @@ hr {
 .section {
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.6s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
 }
 
 .section.show {
     opacity: 1;
     transform: translateY(0);
+    will-change: auto;
 }
 
 /* Make sure container for contact isn't hidden */
@@ -316,14 +411,15 @@ hr {
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #333;
-    background-color: #1a1a1a;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 2px solid rgba(81, 146, 230, 0.3);
+    background: rgba(26, 26, 26, 0.8);
     color: white;
     font-size: 16px;
     resize: vertical;
+    transition: all 0.3s ease;
 }
 
 .contact-form textarea {
@@ -332,7 +428,10 @@ hr {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    outline: 2px solid #5192e6;
+    outline: none;
+    border-color: #5192e6;
+    box-shadow: 0 0 20px rgba(81, 146, 230, 0.3);
+    background: rgba(26, 26, 26, 0.95);
 }
 
 /*Projects*/
@@ -340,12 +439,19 @@ hr {
 /* Slightly smaller subheading */
 .subheading {
     text-align: center;
-    font-size: 28px;
-    font-weight: 600;
-    color: #3b82f6;
-    margin: 40px 0px 20px 15px;
-    text-transform: uppercase;
     font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 60px 0px 30px 0px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.subheading:first-of-type {
+    margin-top: 40px;
 }
 
 /* Container for projects */
@@ -360,35 +466,71 @@ hr {
 
 /* Individual project cards */
 .project-card {
-    background-color: #222;
+    background: rgba(34, 34, 34, 0.6);
+    backdrop-filter: blur(10px);
     color: white;
     flex: 1 1 280px;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(81, 146, 230, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(81, 146, 230, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 50px rgba(81, 146, 230, 0.4);
+    border-color: rgba(81, 146, 230, 0.5);
 }
 
 /*Project card animation*/
 .project-card {
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.6s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
 }
 
 .project-card.show {
     opacity: 1;
     transform: translateY(0);
+    will-change: auto;
 }
 
 .project-card video,
 .project-card img {
     max-width: 100%;
-    border-radius: 6px;
-    margin-bottom: 8px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover video,
+.project-card:hover img {
+    transform: scale(1.05);
 }
 
 .btn-github {
@@ -401,7 +543,95 @@ hr {
 }
 
 .project-card .btn-github {
-    padding: 6px 12px;
+    padding: 10px 20px;
     font-size: 14px;
-    margin-top: 8px;
+    margin-top: 12px;
+    z-index: 1;
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+/* 
+Additional Visual Enhancements */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection styling */
+::selection {
+    background: rgba(81, 146, 230, 0.3);
+    color: white;
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 100%);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #4169e1 0%, #5192e6 100%);
+}
+
+/* Add subtle glow to headings */
+h1, h2, h3 {
+    text-shadow: 0 0 20px rgba(81, 146, 230, 0.3);
+}
+
+/* Improve list item styling */
+.section ul li {
+    padding-left: 20px;
+    position: relative;
+}
+
+.section ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: #5192e6;
+    font-size: 20px;
+}
+
+/* Add animation to buttons */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(81, 146, 230, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(81, 146, 230, 0.6);
+    }
+}
+
+.btn-github {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.btn-github:hover {
+    animation: none;
+}
+
+/* Improve project card text */
+.project-card p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+/* Add loading animation for videos */
+.project-card video {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
 }

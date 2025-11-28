@@ -32,11 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements(projectCards);
     }
 
+    // Throttle function to limit scroll event firing
+    let scrollTimeout;
+    function throttledReveal() {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                revealAll();
+                scrollTimeout = null;
+            }, 50);
+        }
+    }
+
     // Run once on page load (to show already visible elements)
     revealAll();
 
-    // Run on scroll
-    window.addEventListener('scroll', revealAll);
+    // Run on scroll with throttling
+    window.addEventListener('scroll', throttledReveal, { passive: true });
 
     // Run on scroll and on load
     revealIntro();
