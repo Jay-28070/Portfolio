@@ -49,51 +49,81 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run on scroll with throttling
     window.addEventListener('scroll', throttledReveal, { passive: true });
 
-    // Run on scroll and on load
-    revealIntro();
-    window.addEventListener('scroll', revealIntro);
+    // ----------------------------
+    // Hamburger Menu
+    // ----------------------------
+    const hamburger = document.getElementById('hamburger');
+    const navbarLinks = document.getElementById('navbar-links');
+
+    if (hamburger && navbarLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navbarLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = navbarLinks.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navbarLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navbarLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navbarLinks.classList.remove('active');
+            }
+        });
+    }
 
     // ----------------------------
     // Contact Form
     // ----------------------------
     const form = document.getElementById('contact-form');
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // prevent default submission
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // prevent default submission
 
-        fetch('https://formspree.io/f/YOUR_FORM_ID', { // replace with your endpoint
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "thankyou.html"; // redirect to your page
-                } else {
-                    alert('Oops! Something went wrong.');
-                }
+            fetch('https://formspree.io/f/YOUR_FORM_ID', { // replace with your endpoint
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
             })
-            .catch(() => {
-                alert('Oops! Something went wrong.');
-            });
-    });
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "thankyou.html"; // redirect to your page
+                    } else {
+                        alert('Oops! Something went wrong.');
+                    }
+                })
+                .catch(() => {
+                    alert('Oops! Something went wrong.');
+                });
+        });
+    }
 
     // ----------------------------
     // Force download CV
     // ----------------------------
-    document.getElementById('download-cv').addEventListener('click', function (e){
-        e.preventDefault();
-        fetch('cv.pdf')
-        .then(resp => resp.blop())
-        .then(blob => {
-            const url = window.url.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'JasonWilliamsCV.pdf';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            
-        })
-    })
+    const downloadCv = document.getElementById('download-cv');
+    if (downloadCv) {
+        downloadCv.addEventListener('click', function (e) {
+            e.preventDefault();
+            fetch('cv.pdf')
+                .then(resp => resp.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'JasonWilliamsCV.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                })
+        });
+    }
 });
