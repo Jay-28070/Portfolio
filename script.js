@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = "thankyou.html"; 
+                        window.location.href = "thanks.html"; 
                     } else {
                         alert('Oops! Something went wrong.');
                     }
