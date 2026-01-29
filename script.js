@@ -86,16 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (form) {
         form.addEventListener('submit', function (e) {
-            e.preventDefault(); // prevent default submission
+            e.preventDefault(); 
 
-            fetch('https://formspree.io/f/YOUR_FORM_ID', { // replace with your endpoint
+            fetch('https://formspree.io/f/meovjbpd', { 
                 method: 'POST',
                 body: new FormData(form),
                 headers: { 'Accept': 'application/json' }
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = "thankyou.html"; // redirect to your page
+                        window.location.href = "thankyou.html"; 
                     } else {
                         alert('Oops! Something went wrong.');
                     }
