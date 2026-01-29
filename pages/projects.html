@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <title>Portfolio</title>
+    <title>Projects - Jason Williams</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script defer src="../scripts/script.js"></script>
 </head>
 
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!--Navbar-->
     <nav>
         <div class="navbar">
@@ -21,7 +26,7 @@
             </button>
             <div class="navbar-links" id="navbar-links">
                 <ul>
-                    <li><a href="index.html">About</a></li>
+                    <li><a href="../index.html">About</a></li>
                     <li><a class="active-page" href="projects.html">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="resume.html">Resume</a></li>
@@ -52,8 +57,8 @@
 
         <!-- Custom Content generator -->
         <div class="project-card" data-category="ai">
-            <video loop muted playsinline preload="none" data-src="loveable1.webm">
-                <source data-src="loveable1.webm" type="video/webm">
+            <video loop muted playsinline preload="none" data-src="../media/videos/loveable1.webm">
+                <source data-src="../media/videos/loveable1.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
             <div class="project-content">
@@ -69,8 +74,8 @@
 
         <!-- Resume wizard-->
         <div class="project-card" data-category="ai">
-            <video loop muted playsinline preload="none" data-src="loveable2.webm">
-                <source data-src="loveable2.webm" type="video/webm">
+            <video loop muted playsinline preload="none" data-src="../media/videos/loveable2.webm">
+                <source data-src="../media/videos/loveable2.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
             <div class="project-content">
@@ -88,8 +93,8 @@
 
         <!-- Chatbot -->
         <div class="project-card" data-category="ai">
-            <video loop muted playsinline preload="none" data-src="chatbot.webm">
-                <source data-src="chatbot.webm" type="video/webm">
+            <video loop muted playsinline preload="none" data-src="../media/videos/chatbot.webm">
+                <source data-src="../media/videos/chatbot.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
             <div class="project-content">
@@ -115,7 +120,7 @@
 
         <!-- officeFlow -->
         <div class="project-card" data-category="web">
-            <img src="officeFlow_screenshot.png" alt="Web App Screenshot" loading="lazy">
+            <img src="../media/images/officeFlow_screenshot.png" alt="officeFlow Screenshot" loading="lazy">
             <div class="project-content">
                 <h3>officeFlow</h3>
                 <p>An app that helps business with their internal services such as HR, Maintence and IT Support.</p>
@@ -136,7 +141,7 @@
 
         <!-- Community Crime Watch -->
         <div class="project-card" data-category="web">
-            <img src="crime_watch_Screenshot.png" alt="Web App Screenshot" loading="lazy">
+            <img src="../media/images/crime_watch_Screenshot.png" alt="Crime Watch Screenshot" loading="lazy">
             <div class="project-content">
                 <h3>Community Crime Watch</h3>
                 <p>An app designed to assist the safety of any community with noteable features such as live crime
@@ -167,29 +172,37 @@
 
     <div class="projects-grid">
 
-        <!-- Student Managment System -->
+        <!-- Student Management System -->
         <div class="project-card project-card-code" data-category="java">
             <div class="code-preview">
-                <pre><code>// Sample output preview
-> Welcome to Calculator App
-> Enter operation (+, -, *, /): +
-> Enter first number: 10
-> Enter second number: 5
-> Result: 15</code></pre>
+                <pre><code>// Student Management System
+> Welcome
+> 1. Add students
+> 2. View all students
+> 3. Remove student
+> 4. Search student
+> 5. Update students
+> 6. Exit
+> Enter choice: 1
+
+> ---Add Students---
+> Enter student's name: John
+> Student added successfully!
+> ID: 45782</code></pre>
             </div>
             <div class="project-content">
-                <h3>Student Managment System</h3>
-                <p>A command-line calculator application demonstrating OOP principles and user input handling.</p>
+                <h3>Student Management System</h3>
+                <p>A comprehensive console application for managing student records with full CRUD operations and data validation.</p>
                 <div class="project-tags">
                     <span class="tag">Java</span>
                     <span class="tag">OOP</span>
-                    <span class="tag">Console</span>
+                    <span class="tag">Data Structures</span>
+                    <span class="tag">GUI Dialogs</span>
                 </div>
             </div>
             <div class="project-buttons">
-                <button class="btn btn-info" data-modal="modal-java-calc">More Info</button>
-                <a href="https://github.com/yourusername/java-calculator" class="btn btn-github" target="_blank">View
-                    Code</a>
+                <button class="btn btn-info" data-modal="modal-student-system">More Info</button>
+                <a href="https://github.com/Jay-28070/Student-Managment-System" class="btn btn-github" target="_blank">View Code</a>
             </div>
         </div>
 
@@ -220,9 +233,9 @@
         <!-- officeFlow Modal -->
         <div id="modal-officeflow" class="modal-template">
             <h2>officeFlow</h2>
-            <img src="placeholder-webapp.jpg" alt="officeFlow Screenshot"
-                style="width: 100%; border-radius: 10px; margin: 20px 0;">
+
             <h3>Overview</h3>
+            
             <p>officeFlow is a comprehensive business management application designed to streamline internal services
                 including HR, Maintenance, and IT Support.</p>
 
@@ -241,6 +254,7 @@
              for database management.</p>
 
             <h3>Challenges & Learning</h3>
+            
             <p>This project taught me about building RESTful APIs, Admin hierachy and how to use node.js with express.</p>
 
             <div class="modal-buttons">
@@ -252,9 +266,9 @@
         <!-- Crime Watch Modal -->
         <div id="modal-crime-watch" class="modal-template">
             <h2>Community Crime Watch</h2>
-            <img src="placeholder-webapp.jpg" alt="Crime Watch Screenshot"
-                style="width: 100%; border-radius: 10px; margin: 20px 0;">
+
             <h3>Overview</h3>
+
             <p>A community safety application that enables residents to report crimes in real-time and stay informed
                 about local safety concerns.</p>
 
@@ -285,8 +299,8 @@
         <div id="modal-content-gen" class="modal-template">
             <h2>Custom Content Generator</h2>
             <video loop muted playsinline controls style="width: 100%; border-radius: 10px; margin: 20px 0;"
-                data-src="loveable1.webm">
-                <source data-src="loveable1.webm" type="video/webm">
+                data-src="../media/videos/loveable1.webm">
+                <source data-src="../media/videos/loveable1.webm" type="video/webm">
             </video>
             <h3>Overview</h3>
             <p>An AI-powered content generation platform built using Loveable, showcasing advanced prompt engineering
@@ -314,8 +328,8 @@
         <div id="modal-resume-gen" class="modal-template">
             <h2>Resume Generator</h2>
             <video loop muted playsinline controls style="width: 100%; border-radius: 10px; margin: 20px 0;"
-                data-src="loveable2.webm">
-                <source data-src="loveable2.webm" type="video/webm">
+                data-src="../media/videos/loveable2.webm">
+                <source data-src="../media/videos/loveable2.webm" type="video/webm">
             </video>
             <h3>Overview</h3>
             <p>An intelligent resume creation and enhancement tool powered by AI, helping users create professional CVs
@@ -343,8 +357,8 @@
         <div id="modal-chatbot" class="modal-template">
             <h2>Zapier Chatbot</h2>
             <video loop muted playsinline controls style="width: 100%; border-radius: 10px; margin: 20px 0;"
-                data-src="chatbot.webm">
-                <source data-src="chatbot.webm" type="video/webm">
+                data-src="../media/videos/chatbot.webm">
+                <source data-src="../media/videos/chatbot.webm" type="video/webm">
             </video>
             <h3>Overview</h3>
             <p>An intelligent chatbot built using Zapier's automation platform, demonstrating workflow automation and
@@ -367,40 +381,67 @@
             </div>
         </div>
 
-        <!-- Java Calculator Modal -->
-        <div id="modal-java-calc" class="modal-template">
-            <h2>Java Calculator</h2>
+        <!-- Student Management System Modal -->
+        <div id="modal-student-system" class="modal-template">
+            <h2>Student Management System</h2>
             <div class="code-preview" style="margin: 20px 0;">
-                <pre><code>// Sample output
-> Welcome to Calculator App
-> Enter operation (+, -, *, /): +
-> Enter first number: 10
-> Enter second number: 5
-> Result: 15
+                <pre><code>// Main Menu Interface
+> Welcome
+> 1. Add students
+> 2. View all students (Sorted by ID)
+> 3. Remove student
+> 4. Search student
+> 5. Update students
+> 6. Exit
 
-> Enter operation (+, -, *, /): *
-> Enter first number: 7
-> Enter second number: 8
-> Result: 56</code></pre>
+// Adding a Student
+> ---Add Students---
+> Enter student's name: John
+> Enter John's surname: Smith
+> Enter John's age: 15
+> What grade is John in: 10
+> Student added successfully!
+> ID: 45782</code></pre>
             </div>
             <h3>Overview</h3>
-            <p>A command-line calculator application demonstrating object-oriented programming principles and user input
-                handling in Java.</p>
+            <p>A comprehensive Student Management System built in Java that demonstrates advanced OOP principles, data validation, and user interaction through both console and GUI dialogs.</p>
 
             <h3>Key Features</h3>
             <ul>
-                <li>Basic Arithmetic Operations - Addition, subtraction, multiplication, division</li>
-                <li>Error Handling - Validates user input and handles edge cases</li>
-                <li>OOP Design - Uses classes and methods effectively</li>
-                <li>User-Friendly Interface - Clear prompts and feedback</li>
+                <li>Add Students - Create student records with automatic ID generation (5-digit random IDs)</li>
+                <li>View All Students - Display students sorted by ID using bubble sort algorithm</li>
+                <li>Remove Students - Delete student records by name</li>
+                <li>Search Functionality - Find students by name, surname, or ID</li>
+                <li>Update Records - Modify student information with validation</li>
+                <li>Data Validation - Age-grade correlation checks, empty field prevention, numeric validation</li>
+                <li>GUI Error Dialogs - User-friendly error messages using JOptionPane</li>
+                <li>Audio Feedback - System beep alerts for errors</li>
+            </ul>
+
+            <h3>Technical Implementation</h3>
+            <ul>
+                <li>Object-Oriented Design - Student class with encapsulation (getters/setters)</li>
+                <li>ArrayList Management - Dynamic student collection storage</li>
+                <li>Sorting Algorithms - Bubble sort implementation for ID ordering</li>
+                <li>Exception Handling - Try-catch blocks for NumberFormatException</li>
+                <li>Input Validation - Multiple validation layers for data integrity</li>
+                <li>Business Logic - Age-grade validation (prevents impossible scenarios)</li>
+            </ul>
+
+            <h3>Validation Rules</h3>
+            <ul>
+                <li>Grades must be between 1-12</li>
+                <li>Students cannot be kept in same grade for more than 3 years</li>
+                <li>Age-grade correlation must be realistic (age - grade between 5-8 years)</li>
+                <li>All fields validated for empty/blank inputs</li>
+                <li>Numeric fields validated for proper integer format</li>
             </ul>
 
             <h3>Skills Demonstrated</h3>
-            <p>Java fundamentals, object-oriented programming, exception handling, and console I/O operations.</p>
+            <p>Java fundamentals, object-oriented programming, data structures (ArrayList), sorting algorithms, exception handling, input validation, GUI components (Swing), and console I/O operations.</p>
 
             <div class="modal-buttons">
-                <a href="https://github.com/yourusername/java-calculator" class="btn btn-github" target="_blank">View on
-                    GitHub</a>
+                <a href="https://github.com/yourusername/student-management-system" class="btn btn-github" target="_blank">View on GitHub</a>
             </div>
         </div>
     </div>

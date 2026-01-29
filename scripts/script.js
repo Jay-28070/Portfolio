@@ -2,6 +2,26 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------
+    // Loading Screen - Optimized
+    // ----------------------------
+    const loadingScreen = document.getElementById('loading-screen');
+    
+    if (loadingScreen) {
+        // Hide loading screen immediately to allow scrolling
+        const hideLoader = () => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                if (loadingScreen.parentNode) {
+                    loadingScreen.remove();
+                }
+            }, 500);
+        };
+        
+        // Hide after a very short delay (just enough to show it briefly)
+        setTimeout(hideLoader, 300);
+    }
+
+    // ----------------------------
     // Animations
     // ----------------------------
 
@@ -39,42 +59,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Lazy load videos - only load when near viewport
         const videos = document.querySelectorAll('.project-card video');
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const video = entry.target;
-                
-                if (entry.isIntersecting && !video.dataset.loaded) {
-                    // Load the video source
-                    const source = video.querySelector('source');
-                    const videoSrc = video.dataset.src || source.dataset.src;
-                    
-                    if (videoSrc) {
-                        source.src = videoSrc;
-                        video.src = videoSrc;
-                        video.load();
-                        video.dataset.loaded = 'true';
-                        
-                        // Play video when loaded
-                        video.addEventListener('loadeddata', () => {
-                            if (entry.isIntersecting) {
-                                video.play().catch(() => {});
-                            }
-                        }, { once: true });
-                    }
-                } else if (!entry.isIntersecting && video.dataset.loaded) {
-                    // Pause video when out of view
-                    video.pause();
-                } else if (entry.isIntersecting && video.dataset.loaded) {
-                    // Resume playing if scrolled back into view
-                    video.play().catch(() => {});
-                }
-            });
-        }, { 
-            rootMargin: '50px',
-            threshold: 0.25 
-        });
         
-        videos.forEach(video => videoObserver.observe(video));
+        if (videos.length > 0) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    
+                    if (entry.isIntersecting && !video.dataset.loaded) {
+                        // Load the video source
+                        const source = video.querySelector('source');
+                        const videoSrc = video.dataset.src || (source ? source.dataset.src : null);
+                        
+                        if (videoSrc) {
+                            if (source) source.src = videoSrc;
+                            video.src = videoSrc;
+                            video.load();
+                            video.dataset.loaded = 'true';
+                            
+                            // Play video when loaded
+                            video.addEventListener('loadeddata', () => {
+                                if (entry.isIntersecting) {
+                                    video.play().catch(() => {});
+                                }
+                            }, { once: true });
+                        }
+                    } else if (!entry.isIntersecting && video.dataset.loaded) {
+                        // Pause video when out of view
+                        video.pause();
+                    } else if (entry.isIntersecting && video.dataset.loaded) {
+                        // Resume playing if scrolled back into view
+                        video.play().catch(() => {});
+                    }
+                });
+            }, { 
+                rootMargin: '100px',
+                threshold: 0.1 
+            });
+            
+            videos.forEach(video => videoObserver.observe(video));
+        }
     } else {
         // Fallback for older browsers
         function revealElements(elements) {
@@ -275,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (downloadCv) {
         downloadCv.addEventListener('click', function (e) {
             e.preventDefault();
-            fetch('cv.pdf')
+            fetch('../media/other/cv.pdf')
                 .then(resp => resp.blob())
                 .then(blob => {
                     const url = window.URL.createObjectURL(blob);
