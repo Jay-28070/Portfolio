@@ -31,64 +31,379 @@
     </nav>
 
     <!--Projects-->
-    <!-- AI Projects Subheading -->
+    <!-- Filter Buttons -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="ai">AI Projects</button>
+        <button class="filter-btn" data-filter="web">Web Apps</button>
+        <button class="filter-btn" data-filter="java">Java Console</button>
+    </div>
+
+    <!-- AI Projects:
+
+        This is all my projects I've built using AI tools such as loveable or base44.
+        This is just to demonstrate how I can work with AI to ship products faster.
+        Also showcases skill in prompt engineering.
+    -->
+
     <h3 class="subheading">--- AI Projects ---</h3>
 
     <div class="projects-grid">
 
         <!-- Custom Content generator -->
-        <div class="project-card">
-            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/loveable1.png') }}">
-                <source src="loveable1.webm" type="video/webm">
+        <div class="project-card" data-category="ai">
+            <video loop muted playsinline preload="none" data-src="loveable1.webm">
+                <source data-src="loveable1.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <h3>Custom Content Generator</h3>
-            <p>AI-powered custom content generator website built using Loveable. Focus on prompt engineering and
-                AI-driven design.</p>
-            <a href="https://vision-code-text.lovable.app" class="btn btn-github" target="_blank">View Project</a>
+            <div class="project-content">
+                <h3>Custom Content Generator</h3>
+                <p>AI-powered custom content generator website built using Loveable. Focus on prompt engineering and
+                    AI-driven design.</p>
+            </div>
+            <div class="project-buttons">
+                <button class="btn btn-info" data-modal="modal-content-gen">More Info</button>
+                <a href="https://vision-code-text.lovable.app" class="btn btn-github" target="_blank">View Project</a>
+            </div>
         </div>
 
         <!-- Resume wizard-->
-        <div class="project-card">
-            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/loveable2.png') }}">
-                <source src="loveable2.webm" type="video/webm">
+        <div class="project-card" data-category="ai">
+            <video loop muted playsinline preload="none" data-src="loveable2.webm">
+                <source data-src="loveable2.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <h3>Resume Generator</h3>
-            <p>Another AI-powered website from Loveable that can create or enhance CV's. Highlighting prompt engineering
-                skills.</p>
-            <a href="https://resume-wizard-ai-76.lovable.app/" class="btn btn-github" disabled>View Project</a>
+            <div class="project-content">
+                <h3>Resume Generator</h3>
+                <p>Another AI-powered website from Loveable that can create or enhance CV's. Highlighting prompt
+                    engineering
+                    skills.</p>
+            </div>
+            <div class="project-buttons">
+                <button class="btn btn-info" data-modal="modal-resume-gen">More Info</button>
+                <a href="https://resume-wizard-ai-76.lovable.app/" class="btn btn-github" target="_blank">View
+                    Project</a>
+            </div>
         </div>
 
         <!-- Chatbot -->
-        <div class="project-card">
-            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/chatbot.png') }}">
-                <source src="chatbot.webm" type="video/webm">
+        <div class="project-card" data-category="ai">
+            <video loop muted playsinline preload="none" data-src="chatbot.webm">
+                <source data-src="chatbot.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <h3>Zapier Chatbot</h3>
-            <p>An AI chatbot built using Zapier, showcasing workflow automation and prompt engineering skills.</p>
-            <a href="https://ai-concept-bot.zapier.app/" class="btn btn-github" disabled>View Project</a>
+            <div class="project-content">
+                <h3>Zapier Chatbot</h3>
+                <p>An AI chatbot built using Zapier, showcasing workflow automation and prompt engineering skills.</p>
+            </div>
+            <div class="project-buttons">
+                <button class="btn btn-info" data-modal="modal-chatbot">More Info</button>
+                <a href="https://ai-concept-bot.zapier.app/" class="btn btn-github" target="_blank">View Project</a>
+            </div>
         </div>
     </div>
 
-    <!-- Websites Subheading -->
-    <!-- <h3 class="subheading">--- Websites ---</h3>
+    <!-- Web Apps 
+
+        These are my best projects so far using vanilla HTML, CSS and JavaScript
+        I've learned basic backend skills like Routing, making APIs using Node.js with Express.
+    -->
+
+    <h3 class="subheading">--- Web Applications ---</h3>
 
     <div class="projects-grid">
 
-        <div class="project-card">
-            <video autoplay loop muted playsinline poster="{{ url_for('static', filename='images/loveable1.png') }}">
-                <source src="loveable1.webm" type="video/webm">
-                Your browser does not support the video tag.
-            </video>
-            <h3>Custom Content Generator</h3>
-            <p>AI-powered custom content generator website built using Loveable. Focus on prompt engineering and
-                AI-driven design.</p>
-            <a href="https://vision-code-text.lovable.app" class="btn btn-github" target="_blank">View Project</a>
+        <!-- officeFlow -->
+        <div class="project-card" data-category="web">
+            <img src="officeFlow_screenshot.png" alt="Web App Screenshot" loading="lazy">
+            <div class="project-content">
+                <h3>officeFlow</h3>
+                <p>An app that helps business with their internal services such as HR, Maintence and IT Support.</p>
+                <div class="project-tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">Firebase</span>
+                </div>
+            </div>
+            <div class="project-buttons">
+                <button class="btn btn-info" data-modal="modal-officeflow">More Info</button>
+                <a href="https://github.com/Jay-28070/Office-Flow" class="btn btn-github" target="_blank">View Code</a>
+            </div>
         </div>
 
-    </div> -->
+        <!-- Community Crime Watch -->
+        <div class="project-card" data-category="web">
+            <img src="crime_watch_Screenshot.png" alt="Web App Screenshot" loading="lazy">
+            <div class="project-content">
+                <h3>Community Crime Watch</h3>
+                <p>An app designed to assist the safety of any community with noteable features such as live crime
+                    reporting.</p>
+                <div class="project-tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Firebase</span>
+                </div>
+            </div>
+            <div class="project-buttons">
+                <button class="btn btn-info" data-modal="modal-crime-watch">More Info</button>
+                <a href="https://github.com/Jay-28070/Community-Crime-Watch" class="btn btn-github" target="_blank">View
+                    Code</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Java Console 
+     
+        All I know about Java is self-taught knowledge. I really enjoy using it.
+        This will contain some console apps and hopefully fully fledged Java applications.
+        Console apps will just demonstate my understanding of OOP principles. 
+    -->
+
+    <h3 class="subheading">--- Java Applications ---</h3>
+
+    <div class="projects-grid">
+
+        <!-- Student Managment System -->
+        <div class="project-card project-card-code" data-category="java">
+            <div class="code-preview">
+                <pre><code>// Sample output preview
+> Welcome to Calculator App
+> Enter operation (+, -, *, /): +
+> Enter first number: 10
+> Enter second number: 5
+> Result: 15</code></pre>
+            </div>
+            <div class="project-content">
+                <h3>Student Managment System</h3>
+                <p>A command-line calculator application demonstrating OOP principles and user input handling.</p>
+                <div class="project-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">OOP</span>
+                    <span class="tag">Console</span>
+                </div>
+            </div>
+            <div class="project-buttons">
+                <button class="btn btn-info" data-modal="modal-java-calc">More Info</button>
+                <a href="https://github.com/yourusername/java-calculator" class="btn btn-github" target="_blank">View
+                    Code</a>
+            </div>
+        </div>
+
+        <!-- Add more Java projects here -->
+
+    </div>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="project-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!--
+        Modal pop ups
+
+        This is where all the pop ups will show after user clicks the 'more info' button.
+        Just a pop up that gives more in depth explanations of the project and showcase what I've learned
+    
+    -->
+
+    <div style="display: none;">
+        <!-- officeFlow Modal -->
+        <div id="modal-officeflow" class="modal-template">
+            <h2>officeFlow</h2>
+            <img src="placeholder-webapp.jpg" alt="officeFlow Screenshot"
+                style="width: 100%; border-radius: 10px; margin: 20px 0;">
+            <h3>Overview</h3>
+            <p>officeFlow is a comprehensive business management application designed to streamline internal services
+                including HR, Maintenance, and IT Support.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>HR Management System - Employee records, leave requests, and performance tracking</li>
+                <li>Maintenance Ticketing - Report and track facility maintenance issues</li>
+                <li>IT Support Portal - Submit and manage technical support requests</li>
+                <li>Employee Management - Create departments as super admin and manage all employees.</li>
+                <li>Real-time Notifications - Stay updated on request status</li>
+                <li>User Authentication - Secure login with Firebase</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <p>Built with HTML, CSS, JavaScript for the frontend, Node.js and Express for the backend API, and Firebase
+             for database management.</p>
+
+            <h3>Challenges & Learning</h3>
+            <p>This project taught me about building RESTful APIs, Admin hierachy and how to use node.js with express.</p>
+
+            <div class="modal-buttons">
+                <a href="https://github.com/Jay-28070/Office-Flow" class="btn btn-github" target="_blank">View on
+                    GitHub</a>
+            </div>
+        </div>
+
+        <!-- Crime Watch Modal -->
+        <div id="modal-crime-watch" class="modal-template">
+            <h2>Community Crime Watch</h2>
+            <img src="placeholder-webapp.jpg" alt="Crime Watch Screenshot"
+                style="width: 100%; border-radius: 10px; margin: 20px 0;">
+            <h3>Overview</h3>
+            <p>A community safety application that enables residents to report crimes in real-time and stay informed
+                about local safety concerns.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Live Crime Reporting - Submit incidents with location and details</li>
+                <li>Interactive Map - View reported crimes in your area</li>
+                <li>Community Alerts - Receive notifications about nearby incidents</li>
+                <li>Anonymous Reporting - Option to report without revealing identity</li>
+                <li>Crime Statistics - View trends and patterns in your community</li>
+            </ul>
+
+            <h3>Technologies Used</h3>
+            <p>Frontend built with HTML, CSS, and JavaScript. Firebase handles real-time database updates and user
+                authentication.</p>
+
+            <h3>Impact</h3>
+            <p>This project demonstrates my ability to build applications that solve real-world problems and improve
+                community safety.</p>
+
+            <div class="modal-buttons">
+                <a href="https://github.com/Jay-28070/Community-Crime-Watch" class="btn btn-github" target="_blank">View
+                    on GitHub</a>
+            </div>
+        </div>
+
+        <!-- Content Generator Modal -->
+        <div id="modal-content-gen" class="modal-template">
+            <h2>Custom Content Generator</h2>
+            <video loop muted playsinline controls style="width: 100%; border-radius: 10px; margin: 20px 0;"
+                data-src="loveable1.webm">
+                <source data-src="loveable1.webm" type="video/webm">
+            </video>
+            <h3>Overview</h3>
+            <p>An AI-powered content generation platform built using Loveable, showcasing advanced prompt engineering
+                and AI integration skills.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Multi-format Content Generation - Text, images, and code</li>
+                <li>Customizable Templates - Pre-built templates for common use cases</li>
+                <li>Real-time Preview - See generated content instantly</li>
+                <li>Export Options - Download in multiple formats</li>
+            </ul>
+
+            <h3>Skills Demonstrated</h3>
+            <p>Prompt engineering, AI tool integration, user experience design, and rapid prototyping with AI-assisted
+                development.</p>
+
+            <div class="modal-buttons">
+                <a href="https://vision-code-text.lovable.app" class="btn btn-github" target="_blank">View Live
+                    Project</a>
+            </div>
+        </div>
+
+        <!-- Resume Generator Modal -->
+        <div id="modal-resume-gen" class="modal-template">
+            <h2>Resume Generator</h2>
+            <video loop muted playsinline controls style="width: 100%; border-radius: 10px; margin: 20px 0;"
+                data-src="loveable2.webm">
+                <source data-src="loveable2.webm" type="video/webm">
+            </video>
+            <h3>Overview</h3>
+            <p>An intelligent resume creation and enhancement tool powered by AI, helping users create professional CVs
+                quickly.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>AI-Powered Suggestions - Get intelligent recommendations for content</li>
+                <li>Multiple Templates - Choose from professional designs</li>
+                <li>Content Enhancement - Improve existing resume text</li>
+                <li>Export to PDF - Download professional-quality resumes</li>
+            </ul>
+
+            <h3>Skills Demonstrated</h3>
+            <p>Advanced prompt engineering, AI workflow design, and creating user-friendly interfaces for complex AI
+                tools.</p>
+
+            <div class="modal-buttons">
+                <a href="https://resume-wizard-ai-76.lovable.app/" class="btn btn-github" target="_blank">View Live
+                    Project</a>
+            </div>
+        </div>
+
+        <!-- Chatbot Modal -->
+        <div id="modal-chatbot" class="modal-template">
+            <h2>Zapier Chatbot</h2>
+            <video loop muted playsinline controls style="width: 100%; border-radius: 10px; margin: 20px 0;"
+                data-src="chatbot.webm">
+                <source data-src="chatbot.webm" type="video/webm">
+            </video>
+            <h3>Overview</h3>
+            <p>An intelligent chatbot built using Zapier's automation platform, demonstrating workflow automation and
+                conversational AI skills.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Natural Language Processing - Understands user queries</li>
+                <li>Automated Workflows - Triggers actions based on conversations</li>
+                <li>Multi-platform Integration - Connects with various services</li>
+                <li>Context-Aware Responses - Maintains conversation flow</li>
+            </ul>
+
+            <h3>Skills Demonstrated</h3>
+            <p>Workflow automation, API integration, prompt engineering, and building conversational interfaces.</p>
+
+            <div class="modal-buttons">
+                <a href="https://ai-concept-bot.zapier.app/" class="btn btn-github" target="_blank">View Live
+                    Project</a>
+            </div>
+        </div>
+
+        <!-- Java Calculator Modal -->
+        <div id="modal-java-calc" class="modal-template">
+            <h2>Java Calculator</h2>
+            <div class="code-preview" style="margin: 20px 0;">
+                <pre><code>// Sample output
+> Welcome to Calculator App
+> Enter operation (+, -, *, /): +
+> Enter first number: 10
+> Enter second number: 5
+> Result: 15
+
+> Enter operation (+, -, *, /): *
+> Enter first number: 7
+> Enter second number: 8
+> Result: 56</code></pre>
+            </div>
+            <h3>Overview</h3>
+            <p>A command-line calculator application demonstrating object-oriented programming principles and user input
+                handling in Java.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Basic Arithmetic Operations - Addition, subtraction, multiplication, division</li>
+                <li>Error Handling - Validates user input and handles edge cases</li>
+                <li>OOP Design - Uses classes and methods effectively</li>
+                <li>User-Friendly Interface - Clear prompts and feedback</li>
+            </ul>
+
+            <h3>Skills Demonstrated</h3>
+            <p>Java fundamentals, object-oriented programming, exception handling, and console I/O operations.</p>
+
+            <div class="modal-buttons">
+                <a href="https://github.com/yourusername/java-calculator" class="btn btn-github" target="_blank">View on
+                    GitHub</a>
+            </div>
+        </div>
+    </div>
 
 </body>
 
