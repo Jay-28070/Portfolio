@@ -311,8 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
         });
     }
-});
-
 
     // ----------------------------
     // Smooth Scroll Navigation (Single Page)
