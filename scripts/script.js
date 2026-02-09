@@ -311,4 +311,177 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
         });
     }
+
+    // ----------------------------
+    // Smooth Scroll Navigation (Single Page)
+    // ----------------------------
+    const smoothNavLinks = document.querySelectorAll('.navbar-links a[href^="#"]');
+    
+    smoothNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Close mobile menu if open
+                if (hamburger && navbarLinks) {
+                    hamburger.classList.remove('active');
+                    navbarLinks.classList.remove('active');
+                }
+                
+                // Smooth scroll to section
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ----------------------------
+    // Active Navigation on Scroll
+    // ----------------------------
+    const pageSections = document.querySelectorAll('section[id]');
+    
+    function highlightNavigation() {
+        const scrollY = window.pageYOffset;
+        
+        pageSections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+            const navLink = document.querySelector(`.navbar-links a[href="#${sectionId}"]`);
+            
+            if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                smoothNavLinks.forEach(link => link.classList.remove('active-page'));
+                navLink.classList.add('active-page');
+            }
+        });
+    }
+    
+    if (pageSections.length > 0) {
+        window.addEventListener('scroll', highlightNavigation, { passive: true });
+    }
+
+    // ----------------------------
+    // Animate Skills and Certificates
+    // ----------------------------
+    const skillCategories = document.querySelectorAll('.skill-category');
+    const certificateCards = document.querySelectorAll('.certificate-card');
+
+    if ('IntersectionObserver' in window && (skillCategories.length > 0 || certificateCards.length > 0)) {
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -15% 0px',
+            threshold: 0
+        });
+
+        skillCategories.forEach(skill => animObserver.observe(skill));
+        certificateCards.forEach(cert => animObserver.observe(cert));
+    }
+
+    // ----------------------------
+    // Skill Modal with Progress Bars
+    // ----------------------------
+    const skillModal = document.getElementById('skill-modal');
+    const skillModalBody = skillModal ? skillModal.querySelector('.skill-modal-body') : null;
+    const skillTags = document.querySelectorAll('.skill-tag[data-skill]');
+
+    // Skill descriptions
+    const skillDescriptions = {
+        'HTML5': 'Proficient in semantic HTML5, accessibility best practices, and modern web standards. Used extensively in all web projects.',
+        'CSS3': 'Strong skills in CSS3, Flexbox, Grid, animations, and responsive design. Created custom designs from scratch.',
+        'JavaScript': 'Solid understanding of ES6+, DOM manipulation, async/await, and modern JavaScript patterns. Primary language for frontend development.',
+        'Responsive Design': 'Expert in creating mobile-first, responsive layouts that work across all devices and screen sizes.',
+        'UI/UX Principles': 'Growing knowledge of user experience design, accessibility, and creating intuitive interfaces.',
+        'Node.js': 'Comfortable building backend applications and APIs with Node.js runtime environment.',
+        'Express.js': 'Experience creating RESTful APIs and server-side applications using Express framework.',
+        'RESTful APIs': 'Understanding of REST principles, HTTP methods, and API design patterns.',
+        'Firebase': 'Hands-on experience with Firebase Authentication, Firestore database, and real-time data synchronization.',
+        'Java': 'Solid foundation in Java, OOP principles, data structures, and console applications.',
+        'Python': 'Basic knowledge of Python syntax and fundamentals, currently expanding skills.',
+        'Git & GitHub': 'Proficient in version control, branching, merging, and collaborative development workflows.',
+        'VS Code': 'Expert user of VS Code with custom configurations, extensions, and productivity shortcuts.',
+        'GitHub Pages': 'Experienced in deploying static sites and managing GitHub Pages configurations.',
+        'Postman': 'Comfortable testing APIs, creating collections, and debugging HTTP requests.',
+        'Prompt Engineering': 'Strong skills in crafting effective prompts for AI tools to generate desired outputs.',
+        'Loveable': 'Experienced in using Loveable for rapid AI-assisted web development.',
+        'Zapier': 'Knowledge of workflow automation and connecting different services through Zapier.',
+        'Problem Solving': 'Strong analytical thinking and ability to break down complex problems into manageable solutions.',
+        'Team Collaboration': 'Effective communicator and team player, experienced in collaborative development at CAPACITI.',
+        'Fast Learner': 'Quick to adapt to new technologies and frameworks, self-motivated learner.',
+        'Self-Learning': 'Proactive in learning new skills through online courses, documentation, and hands-on practice.',
+        'Agile Methodology': 'Understanding of Agile principles, sprints, and iterative development processes.'
+    };
+
+    function getSkillLevel(percentage) {
+        if (percentage >= 80) return { class: 'level-advanced', label: 'Advanced' };
+        if (percentage >= 60) return { class: 'level-intermediate', label: 'Intermediate' };
+        if (percentage >= 40) return { class: 'level-developing', label: 'Developing' };
+        return { class: 'level-beginner', label: 'Beginner' };
+    }
+
+    if (skillModal && skillModalBody) {
+        skillTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                const skillName = tag.dataset.skill;
+                const skillLevel = parseInt(tag.dataset.level);
+                const levelInfo = getSkillLevel(skillLevel);
+
+                // Update modal content
+                document.getElementById('skill-name').textContent = skillName;
+                document.getElementById('skill-percentage').textContent = skillLevel + '%';
+                document.getElementById('skill-description').textContent = skillDescriptions[skillName] || 'Continuously learning and improving this skill.';
+
+                const levelLabel = document.getElementById('skill-level-label');
+                levelLabel.textContent = levelInfo.label;
+                levelLabel.className = 'skill-level-label ' + levelInfo.class;
+
+                const progressBar = document.getElementById('skill-progress-bar');
+                progressBar.className = 'progress-bar ' + levelInfo.class;
+                
+                // Show modal
+                skillModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // Animate progress bar
+                setTimeout(() => {
+                    progressBar.style.width = skillLevel + '%';
+                }, 100);
+            });
+        });
+
+        // Close skill modal
+        const closeSkillModal = () => {
+            skillModal.classList.remove('active');
+            document.body.style.overflow = '';
+            const progressBar = document.getElementById('skill-progress-bar');
+            progressBar.style.width = '0%';
+        };
+
+        const skillModalClose = skillModal.querySelector('.modal-close');
+        const skillModalOverlay = skillModal.querySelector('.modal-overlay');
+
+        if (skillModalClose) {
+            skillModalClose.addEventListener('click', closeSkillModal);
+        }
+
+        if (skillModalOverlay) {
+            skillModalOverlay.addEventListener('click', closeSkillModal);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && skillModal.classList.contains('active')) {
+                closeSkillModal();
+            }
+        });
+    }
 });
