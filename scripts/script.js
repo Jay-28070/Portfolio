@@ -312,3 +312,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+    // ----------------------------
+    // Smooth Scroll Navigation (Single Page)
+    // ----------------------------
+    const smoothNavLinks = document.querySelectorAll('.navbar-links a[href^="#"]');
+    
+    smoothNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Close mobile menu if open
+                if (hamburger && navbarLinks) {
+                    hamburger.classList.remove('active');
+                    navbarLinks.classList.remove('active');
+                }
+                
+                // Smooth scroll to section
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ----------------------------
+    // Active Navigation on Scroll
+    // ----------------------------
+    const pageSections = document.querySelectorAll('section[id]');
+    
+    function highlightNavigation() {
+        const scrollY = window.pageYOffset;
+        
+        pageSections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+            const navLink = document.querySelector(`.navbar-links a[href="#${sectionId}"]`);
+            
+            if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                smoothNavLinks.forEach(link => link.classList.remove('active-page'));
+                navLink.classList.add('active-page');
+            }
+        });
+    }
+    
+    if (pageSections.length > 0) {
+        window.addEventListener('scroll', highlightNavigation, { passive: true });
+    }
+
+    // ----------------------------
+    // Animate Skills and Certificates
+    // ----------------------------
+    const skillCategories = document.querySelectorAll('.skill-category');
+    const certificateCards = document.querySelectorAll('.certificate-card');
+
+    if ('IntersectionObserver' in window && (skillCategories.length > 0 || certificateCards.length > 0)) {
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -15% 0px',
+            threshold: 0
+        });
+
+        skillCategories.forEach(skill => animObserver.observe(skill));
+        certificateCards.forEach(cert => animObserver.observe(cert));
+    }
+});
