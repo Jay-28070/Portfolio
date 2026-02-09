@@ -1168,6 +1168,13 @@ h1, h2, h3 {
     border-radius: 2px;
 }
 
+.section-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 15px;
+    font-style: italic;
+}
+
 /* ===================================
    HERO / LANDING SECTION
    =================================== */
@@ -1653,5 +1660,176 @@ footer {
         width: 45px;
         height: 45px;
         font-size: 20px;
+    }
+}
+
+
+/* ===================================
+   SKILL MODAL & PROGRESS BARS
+   =================================== */
+
+/* Make skill tags clickable */
+.skill-tag {
+    cursor: pointer;
+    position: relative;
+}
+
+.skill-tag::after {
+    content: '👁';
+    position: absolute;
+    right: -20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+}
+
+.skill-tag:hover::after {
+    opacity: 0.7;
+}
+
+/* Skill Modal Specific Styles */
+.skill-modal-content {
+    max-width: 500px;
+}
+
+.skill-modal-body {
+    text-align: center;
+}
+
+.skill-modal-body h2 {
+    font-size: 32px;
+    background: linear-gradient(135deg, #5192e6 0%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+}
+
+.skill-level-label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Progress Bar Container */
+.progress-bar-container {
+    width: 100%;
+    height: 40px;
+    background: rgba(26, 26, 26, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 30px 0;
+    border: 2px solid rgba(81, 146, 230, 0.3);
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-percentage {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Color Coding Based on Level */
+.progress-bar.level-advanced {
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+}
+
+.skill-level-label.level-advanced {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 2px solid #10b981;
+}
+
+.progress-bar.level-intermediate {
+    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+.skill-level-label.level-intermediate {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border: 2px solid #f59e0b;
+}
+
+.progress-bar.level-developing {
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.skill-level-label.level-developing {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 2px solid #3b82f6;
+}
+
+.progress-bar.level-beginner {
+    background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+}
+
+.skill-level-label.level-beginner {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+    border: 2px solid #f97316;
+}
+
+.skill-modal-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 20px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .skill-modal-content {
+        width: 95%;
+    }
+
+    .progress-bar-container {
+        height: 35px;
+    }
+
+    .progress-percentage {
+        font-size: 14px;
+    }
+
+    .skill-modal-body h2 {
+        font-size: 24px;
     }
 }
